@@ -1,5 +1,3 @@
-[![Tests](https://github.com/AlenCarbajal | datosgobar/ckanext-spatial-widget-ar/workflows/Tests/badge.svg?branch=main)](https://github.com/AlenCarbajal | datosgobar/ckanext-spatial-widget-ar/actions)
-
 # ckanext-spatial-widget-ar
 
 **TODO:** Put a description of your extension here:  What does it do? What features does it have? Consider including some screenshots or embedding a video!
