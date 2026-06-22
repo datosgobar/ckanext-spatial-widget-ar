@@ -2,6 +2,25 @@
 
 {% block secondary_content %}
 
-  {% snippet "spatial/snippets/spatial_query.html", default_extent="[[-21.572367, -70.897765], [-55.521977, -52.229562]]" %}
+  {# Sección del mapa de filtro espacial, renderizada inline (en vez de usar el
+     snippet de ckanext-spatial) para poder usar el rótulo en español rioplatense.
+     El markup es el mismo que spatial/snippets/spatial_query.html. #}
+  {% set default_extent = "[[-21.572367, -70.897765], [-55.521977, -52.229562]]" %}
+  <section id="dataset-map" class="module module-narrow module-shallow">
+    <h2 class="module-heading">
+      <i class="fa fa-globe"></i>
+      {{ _('Filtrá por área') }}
+      <a href="{{ h.remove_url_param(['ext_bbox']) }}" class="action">{{ _('Limpiar') }}</a>
+    </h2>
+    {% set map_config = h.get_common_map_config() %}
+    <div class="dataset-map" data-module="spatial-query" data-default_extent="{{ default_extent }}" data-module-map_config="{{ h.dump_json(map_config) }}">
+      <div id="dataset-map-container"></div>
+    </div>
+  </section>
+
+  {% asset 'ckanext-spatial/spatial_query_js' %}
+  {% asset 'ckanext-spatial/spatial_query_css' %}
+
+  {{ super() }}
 
 {% endblock %}
