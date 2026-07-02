@@ -1,11 +1,12 @@
 {% ckan_extends %}
 
-{% block secondary_content %}
+{# El mapa va dentro del bloque de organización, después de super(), para que
+   quede inmediatamente DEBAJO del módulo del organismo en el sidebar. #}
+{% block package_organization %}
   {{ super() }}
 
-  {% set dataset_extent = h.get_pkg_dict_extra(c.pkg_dict, 'spatial', '') %}
+  {% set dataset_extent = pkg.spatial or h.get_pkg_dict_extra(pkg, 'spatial', '') %}
   {% if dataset_extent %}
     {% snippet "spatial/snippets/dataset_map_sidebar.html", extent=dataset_extent %}
   {% endif %}
-
 {% endblock %}
